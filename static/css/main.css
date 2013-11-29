@@ -8,7 +8,7 @@ body {
 }
 
 #sidebar {
-    width: 200px;
+    min-width: 200px;
     display: table-cell;
     text-align: center;
     border-spacing:0;
@@ -16,10 +16,9 @@ body {
 
 }
 
-#title {
-    font-size: 25px;
+#heading {
+    font-size: 20px;
     color: #ffffff;
-    text-decoration:overline;
 
 }
 #instr_text {
@@ -38,10 +37,27 @@ body {
     text-align: center
 }
 
+#small_text {
+    font-size: 10px;
+    color: #ffffff;
+}
+
+
 #location_form {
     font-size: 15px;
     color: #ffffff;
     text-align: left;
     padding: 5px;
     margin-left:230px
+}
+
+#results_table {
+    font-size: 15px;
+    color: #ffffff;
+    text-align: left;
+    background-color: #008ABE
+    overflow: auto;
+    width: 180px;
+    height: 100px;
+
 }

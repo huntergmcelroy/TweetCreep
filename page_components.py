@@ -22,15 +22,19 @@ initial_screen = """
         <html>
           <body>
             <div id=\"initial\">
-              <figure>\
-                <img src=\"/static/img/logo.png\" alt=\"Tweet Creep\">\
-                <div id=\"title\">Tweet Creep</div>\
-              </figure>\
-              <div id=\"instr_text\"><p>Enter your address to start creeping:</p></div>\
+              <img src=\"/static/img/logo.png\" alt=\"Tweet Creep\">\
+              <div id=\"instr_text\">Enter a location to start creeping from:<br></br>
               <form action="" method="post">
                 <input type=\"text\" name="content"/>
                 <div><input type="submit" value="Submit"></div>
               </form>
+              <br></br>Example locations:<br></br>
+              </div>\
+               <div id=\"small_text\">
+                  307 University Dr College Station, TX 77801<br></br>
+                  Texas A&M University<br></br>
+                  77840<br></br>
+                  </div>\
             </div>
           </body>
         </html>
@@ -167,36 +171,11 @@ setInfo = "var infowindow = new google.maps.InfoWindow(options);\
       		  map.setCenter(options.position);\
       		}"
 
-setListen = "google.maps.event.addDomListener(window, \'load\', initialize);\
-            </script>"
+setListen = """google.maps.event.addDomListener(window, \'load\', initialize);\
+            function showUserRoute(user)
+            {
+            alert("Welcome " + user);
+            }
+            </script>"""
 
-body = """
-  </head>
-          <div id="location_form">
-                <form action="" method="post">
-                    Location: <input type="text" name="content"/>
-                    <input type="submit" value="Submit">
-                </form>
-          </div>
-    <body>
-      <div id="main_wrap">
-        <div id="sidebar">
-          <figure>
-            <img src="/static/img/logo.png" alt="Tweet Creep">
-            <div id="title">Tweet Creep</div>
-          </figure>
-          <!-- 
-          <div id="instr_text"><p>Enter a friend's twitter handle to start creeping!</p></div>
-          <form action="" method="get">
-                  <input type="text" />
-                  <input type="submit" value="Creep!" />
-          </form>
-          -->
-        </div>
-        <div id="content">
-          <div id="map-canvas"></div>
-        </div>
-      </div>
-    </body>
-</html>
-"""
+
