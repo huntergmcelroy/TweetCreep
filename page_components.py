@@ -172,10 +172,6 @@ setInfo = "var infowindow = new google.maps.InfoWindow(options);\
       		}"
 
 setListen = """google.maps.event.addDomListener(window, \'load\', initialize);\
-            function showUserRoute(user)
-            {
-            alert("Welcome " + user);
-            }
             </script>"""
 
 

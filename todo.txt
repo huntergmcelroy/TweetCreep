@@ -1,0 +1,5 @@
+to do:
+
+1. Speed this shit up!
+2. Search results -> buttons move map to user tweets on map
+3. Search for user
