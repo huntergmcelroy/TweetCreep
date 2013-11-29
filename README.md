@@ -13,8 +13,8 @@ View metadata for each tweet in realtime, including a current address provided b
 Dependencies
 ============
 
-Python 2.7
-Google App Engine SDK for Python: https://developers.google.com/appengine/downloads#Google_App_Engine_SDK_for_Python
+- Python 2.7
+- Google App Engine SDK for Python: https://developers.google.com/appengine/downloads#Google_App_Engine_SDK_for_Python
 
 How To Run
 ============
