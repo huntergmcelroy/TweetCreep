@@ -45,6 +45,7 @@ initMap = "<script src=\"https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=
           var map;\
           var geo_lat, geo_long;\
           var info_open = false;\
+          var userPositions = new Array();\
           \
           function log(msg) {\
               setTimeout(function() {\
@@ -58,7 +59,7 @@ initMap = "<script src=\"https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=
               mapTypeId: google.maps.MapTypeId.ROADMAP\
           };\
             \
-            map = new google.maps.Map(document.getElementById(\'map-canvas\'), mapOptions);"
+          map = new google.maps.Map(document.getElementById(\'map-canvas\'), mapOptions);"
 
 geoLocate= "if(navigator.geolocation) {\
               navigator.geolocation.getCurrentPosition(function(position) {\
@@ -150,7 +151,7 @@ placeMarker_noGeo= "google.maps.event.addListener(marker, \'click\', function() 
               });\
               \
               map.setCenter(pos);\
-              map.setZoom(15);\
+              map.setZoom(14);\
               }\
             "
 
