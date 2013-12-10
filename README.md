@@ -5,10 +5,10 @@ Project for CSCE 470: Information Storage and Retrieval @ Texas A&M University. 
 
 Tweet Creep is a lightweight, Twitter-based geolocation web service that enables the user to:
 
-See who is tweeting nearby by mapping the most recent tweets
-Analyze crowd movements by viewing the last 5 tweets of each mapped user
-Search by username, keyword, or location, with results sorted by relevance
-View metadata for each tweet in realtime, including a current address provided by Google Maps API.
+- See who is tweeting nearby by mapping the most recent tweets
+- Analyze crowd movements by viewing the last 5 tweets of each mapped user
+- Search by username, keyword, or location, with results sorted by relevance
+- View metadata for each tweet in realtime, including a current address provided by Google Maps API.
 
 Dependencies
 ============
@@ -32,4 +32,4 @@ Application directory: cloned TweetCreep directory (~/TweetCreep/)
 Screenshots
 ============
 
-http://imgur.com/a/yG7xy#0
+http://imgur.com/a/mUZVy/
