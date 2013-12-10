@@ -6,7 +6,7 @@ heading = """
 			<html>
  			 <head>
 		    <link type="text/css" rel="stylesheet" href="static/css/main.css" />
-        <title>Tweet Creep: See where your friends are tweeting!</title>
+        <title>Tweet Creep: See who is tweeting around you!</title>
 		    <meta name=\"viewport\" content=\"initial-scale=1.0, user-scalable=no\">
 		    <meta charset=\"utf-8\">
 		    <style>
@@ -20,22 +20,66 @@ heading = """
 
 initial_screen = """
         <html>
+
+        
           <body>
             <div id=\"initial\">
+            <div id=\"instr_text\">
               <img src=\"/static/img/logo.png\" alt=\"Tweet Creep\">\
               <div id=\"instr_text\">Enter a location to start creeping from:<br></br>
-              <form action="" method="post">
-                <input type=\"text\" name="content"/>
-                <div><input type="submit" value="Submit"></div>
+
+              <form action="" method="post" onsubmit="">
+                <input type="text"   name="content"/>
+                <input type="hidden" name="result" id="result" value="0.0/0.0">
+                <div>
+                <input type="submit" name="submit" id="creep"   value="Waiting for input..."/>
+                <input type="button" name="submit" id="submit_location" value="Sumbit"                onclick="codeAddress(content.value);"></div>
               </form>
-              <br></br>Example locations:<br></br>
+
               </div>\
+              <br></br><div id=\"instr_text\">Example locations:<br></br></div>
                <div id=\"small_text\">
                   307 University Dr College Station, TX 77801<br></br>
                   Texas A&M University<br></br>
                   77840<br></br>
                   </div>\
             </div>
+
+            <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+            <script>
+            document.getElementById("creep").style.display = "none";
+
+            function codeAddress(address) {
+              var lat;
+              var lng;
+              var geocoder = new google.maps.Geocoder();
+              geocoder.geocode( { 'address': address}, function(results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                  res = results[0].geometry.location;
+                  lat = results[0].geometry.location.lat();
+                  lng = results[0].geometry.location.lng();
+                  //alert('Success ' + lat + ', ' +lng);
+                  document.getElementById('result').value = lat + "/" + lng
+                  document.getElementById('creep').value = "Creep!"
+                  document.getElementById("creep").style.display = "inline";
+                  document.getElementById("submit_location").style.display = "none";
+                } else {
+                  document.getElementById('result').value = "0/0"
+                  alert('Geocode was not successful for the following reason: ' + status);
+                }
+              });
+              //setTimeout(function() { alert("Waiting for something to happen? Try pressing Go!"); }, 3000 );
+            }
+
+            function stopRKey(evt) { 
+              var evt = (evt) ? evt : ((event) ? event : null); 
+              var node = (evt.target) ? evt.target : ((evt.srcElement) ? evt.srcElement : null); 
+              if ((evt.keyCode == 13) && (node.type=="text"))  {return false;} 
+            } 
+
+            document.onkeypress = stopRKey;
+            </script>
+
           </body>
         </html>
         """
@@ -56,68 +100,40 @@ initMap = "<script src=\"https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=
           function initialize() {\
             var mapOptions = {\
               zoom: 6,\
-              mapTypeId: google.maps.MapTypeId.ROADMAP\
+              mapTypeId: google.maps.MapTypeId.HYBRID\
           };\
             \
           map = new google.maps.Map(document.getElementById(\'map-canvas\'), mapOptions);"
 
-geoLocate= "if(navigator.geolocation) {\
-              navigator.geolocation.getCurrentPosition(function(position) {\
-                var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);\
-                geo_lat = position.coords.latitude;\
-                geo_long = position.coords.longitude;\
-                var infowindow = new google.maps.InfoWindow();\
-                \
-                var marker = new google.maps.Marker({\
-                    position: pos,\
-                    map: map,\
-                    icon : \'http://maps.google.com/mapfiles/ms/icons/flag.png\',\
-                    title: \'Your Location\'\
-                });\
-                \
-                var geocoder = new google.maps.Geocoder();\
-                var addr = new String();\
-                geocoder.geocode({\'latLng\': pos}, function(results, status) {\
-                  if (status == google.maps.GeocoderStatus.OK) {\
-                    if (results[1]) {\
-                      addr = results[0].formatted_address;\
-                     \
-                      var contentString = \
-                        \'<p>\' + addr + \'</p>\'+\
-                        \'<p><b>Location found using HTML5.</b></p>\'+\
-                        \'<p>Coordinates: \' + pos.toString() + \'</p>\';\
-                        \
-                      infowindow.setContent(contentString);\
-                    }\
-                  }\
-                });"
 
-nogeoLocate= "var infowindow = new google.maps.InfoWindow();\
-                \
-                var marker = new google.maps.Marker({\
-                    position: pos,\
-                    map: map,\
-                    icon : \'http://maps.google.com/mapfiles/ms/icons/flag.png\',\
-                    title: \'Your Location\'\
-                });\
-                \
-                var contentString;\
-                var geocoder = new google.maps.Geocoder();\
-                var addr = new String();\
-                geocoder.geocode({\'latLng\': pos}, function(results, status) {\
-                  if (status == google.maps.GeocoderStatus.OK) {\
-                    if (results[1]) {\
-                      addr = results[0].formatted_address;\
-                     \
-                      contentString = \
-                        \'<p>\' + addr + \'</p>\'+\
-                        \'<p><b>Location given by user.</b></p>\'+\
-                        \'<p>Coordinates: \' + pos.toString() + \'</p>\';\
-                        \
-                      infowindow.setContent(contentString);\
-                    }\
-                  }\
-                });"
+nogeoLocate= """
+                var infowindow = new google.maps.InfoWindow();
+                
+                var marker = new google.maps.Marker({
+                    position: pos,
+                    map: map,
+                    icon : \'http://maps.google.com/mapfiles/ms/icons/flag.png\',
+                    title: \'Your Location\'
+                });
+                
+                var contentString;
+                var geocoder = new google.maps.Geocoder();
+                var addr = new String();
+                geocoder.geocode({\'latLng\': pos}, function(results, status) {
+                  if (status == google.maps.GeocoderStatus.OK) {
+                    if (results[1]) {
+                      addr = results[0].formatted_address;
+                     
+                      contentString = 
+                        \'<p>\' + addr + \'</p>\'+
+                        \'<p><b>Location given by user.</b></p>\'+
+                        \'<p>Coordinates: \' + pos.toString() + \'</p>\';
+                        
+                      infowindow.setContent(contentString);
+                    }
+                  }
+                });
+              """
 
 placeMarker= "google.maps.event.addListener(marker, \'click\', function() {\
                 infowindow.open(map,marker);\

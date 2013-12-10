@@ -1,6 +1,6 @@
 body {
   font-family: "Helvetica Neue", Arial, sans-serif;
-  background-color: #00acee;
+  background-color: #292f33;
 }
 #main_wrap { 
     display: table;
@@ -16,6 +16,9 @@ body {
 
 }
 
+a { color: #00acee; }
+a:hover { color: #00acee; }​
+
 #heading {
     font-size: 20px;
     color: #ffffff;
@@ -24,6 +27,7 @@ body {
 #instr_text {
     font-size: 15px;
     color: #ffffff;
+
 }
 
 #content {
@@ -46,18 +50,104 @@ body {
 #location_form {
     font-size: 15px;
     color: #ffffff;
-    text-align: left;
+    text-align: center;
     padding: 5px;
-    margin-left:230px
+    /*margin-left:230px*/
+    background-color: #00acee;
+}
+
+#blue_form {
+    font-size: 15px;
+    color: #ffffff;
+    text-align: center;
+    padding: 5px;
+    /*margin-left:230px*/
+    background-color: #00acee;
 }
 
 #results_table {
     font-size: 15px;
     color: #ffffff;
     text-align: left;
-    background-color: #008ABE
+    background-color: #00acee;
     overflow: auto;
     width: 180px;
     height: 100px;
 
 }
+
+#submit {
+    background-color: #292f33;
+    border-radius:6px;
+    color: #fff;
+    font-size: 15px;
+    text-decoration: none;
+    cursor: poiner;
+    border:none;
+}
+
+#submit:hover {
+    border: none;
+    background: #ffffff;
+        color: #000;
+    box-shadow: 0px 0px 1px #777;
+}
+
+#creep {
+    background-color: #008000;
+    border-radius:6px;
+    color: #fff;
+    font-size: 15px;
+    text-decoration: none;
+    cursor: poiner;
+    border:none;
+    width: 75px;
+}
+
+#creep:hover {
+    border: none;
+    background: #00e500;
+    color: #fff;
+    box-shadow: 0px 0px 1px #777;
+    font-style: bold;
+}
+
+#submit_location {
+    background-color: #b20000;
+    border-radius:6px;
+    color: #fff;
+    font-size: 15px;
+    text-decoration: none;
+    cursor: poiner;
+    border:none;
+    width: 75px;
+}
+
+#submit_location:hover {
+    border: none;
+    background: #ffff00;
+        color: #000;
+    box-shadow: 0px 0px 1px #777;
+
+}
+
+#user_button {
+    border-radius:6px;
+    color: #fff;
+    font-size: 15px;
+    text-decoration: none;
+    cursor: poiner;
+    border:none;
+}
+
+#user_button:hover {
+    border: none;
+    background: #ffffff;
+        color: #000;
+    box-shadow: 0px 0px 1px #777;
+}
+
+
+
+
+
